@@ -1,7 +1,6 @@
 package kookmin.software.capstone2023.timebank.application.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import lombok.Data;
 
 @ConfigurationProperties(prefix = "application.authentication.test")
