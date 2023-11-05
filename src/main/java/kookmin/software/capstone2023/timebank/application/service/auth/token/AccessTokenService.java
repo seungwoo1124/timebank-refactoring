@@ -3,6 +3,7 @@ package kookmin.software.capstone2023.timebank.application.service.auth.token;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import kookmin.software.capstone2023.timebank.application.configuration.AccessTokenProperties;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
