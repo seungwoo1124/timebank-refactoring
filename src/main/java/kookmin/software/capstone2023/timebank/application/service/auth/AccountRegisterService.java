@@ -2,6 +2,8 @@ package kookmin.software.capstone2023.timebank.application.service.auth;
 
 import kookmin.software.capstone2023.timebank.application.exception.ConflictException;
 import kookmin.software.capstone2023.timebank.application.service.auth.model.AuthenticationRequest;
+import kookmin.software.capstone2023.timebank.application.service.auth.model.PasswordAuthenticationRequest;
+import kookmin.software.capstone2023.timebank.application.service.auth.model.SocialAuthenticationRequest;
 import kookmin.software.capstone2023.timebank.domain.model.Account;
 import kookmin.software.capstone2023.timebank.domain.model.AccountType;
 import kookmin.software.capstone2023.timebank.domain.model.Gender;
@@ -62,7 +64,7 @@ public class AccountRegisterService {
 
         if (authentication instanceof SocialAuthenticationRequest) {
             SocialAuthenticationRequest socialAuthRequest = (SocialAuthenticationRequest) authentication;
-            SocialUser socialUser = socialPlatformUserFindService.getUser(socialAuthRequest.getSocialPlatformType(), socialAuthRequest.getAccessToken());
+            SocialPlatformUserFindService.SocialUser socialUser = socialPlatformUserFindService.getUser(socialAuthRequest.getSocialPlatformType(), socialAuthRequest.getAccessToken());
             socialAuthenticationJpaRepository.save(
                     new SocialAuthentication(user.getId(), socialAuthRequest.getSocialPlatformType(), socialUser.getId())
             );
@@ -77,8 +79,8 @@ public class AccountRegisterService {
 
     private void validateDuplicatedRegistration(AuthenticationRequest authentication) {
         if (authentication instanceof SocialAuthenticationRequest) {
-            AuthenticationRequest.SocialAuthenticationRequest socialAuthRequest = (SocialAuthenticationRequest) authentication;
-            SocialUser socialUser = socialPlatformUserFindService.getUser(socialAuthRequest.getSocialPlatformType(), socialAuthRequest.getAccessToken());
+            SocialAuthenticationRequest socialAuthRequest = (SocialAuthenticationRequest) authentication;
+            SocialPlatformUserFindService.SocialUser socialUser = socialPlatformUserFindService.getUser(socialAuthRequest.getSocialPlatformType(), socialAuthRequest.getAccessToken());
             SocialAuthentication socialAuthentication = socialAuthenticationJpaRepository.findByPlatformTypeAndPlatformUserId(socialAuthRequest.getSocialPlatformType(), socialUser.getId());
             if (socialAuthentication != null) {
                 throw new ConflictException("이미 등록된 사용자입니다.");

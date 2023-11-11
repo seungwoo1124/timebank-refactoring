@@ -1,5 +1,8 @@
 package kookmin.software.capstone2023.timebank.application.service.auth.model;
 
+import kookmin.software.capstone2023.timebank.domain.model.AccountType;
+import kookmin.software.capstone2023.timebank.domain.model.auth.AuthenticationType;
+import kookmin.software.capstone2023.timebank.domain.model.auth.SocialPlatformType;
 import lombok.Data;
 
 @Data

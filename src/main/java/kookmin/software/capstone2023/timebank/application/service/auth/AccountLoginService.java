@@ -5,6 +5,10 @@ import kookmin.software.capstone2023.timebank.application.service.auth.model.Aut
 import kookmin.software.capstone2023.timebank.application.service.auth.model.PasswordAuthenticationRequest;
 import kookmin.software.capstone2023.timebank.application.service.auth.model.SocialAuthenticationRequest;
 import kookmin.software.capstone2023.timebank.application.service.auth.token.AccessTokenService;
+import kookmin.software.capstone2023.timebank.domain.model.Account;
+import kookmin.software.capstone2023.timebank.domain.model.User;
+import kookmin.software.capstone2023.timebank.domain.model.auth.PasswordAuthentication;
+import kookmin.software.capstone2023.timebank.domain.model.auth.SocialAuthentication;
 import kookmin.software.capstone2023.timebank.domain.repository.AccountJpaRepository;
 import kookmin.software.capstone2023.timebank.domain.repository.PasswordAuthenticationJpaRepository;
 import kookmin.software.capstone2023.timebank.domain.repository.SocialAuthenticationJpaRepository;
@@ -67,7 +71,7 @@ public class AccountLoginService {
     public long authenticate(AuthenticationRequest authenticationRequest) {
         if (authenticationRequest instanceof SocialAuthenticationRequest) {
             SocialAuthenticationRequest socialAuthenticationRequest = (SocialAuthenticationRequest) authenticationRequest;
-            SocialUser socialUser = socialPlatformUserFindService.getUser(socialAuthenticationRequest.getSocialPlatformType(), socialAuthenticationRequest.getAccessToken());
+            SocialPlatformUserFindService.SocialUser socialUser = socialPlatformUserFindService.getUser(socialAuthenticationRequest.getSocialPlatformType(), socialAuthenticationRequest.getAccessToken());
             SocialAuthentication socialAuthentication = socialAuthenticationJpaRepository.findByPlatformTypeAndPlatformUserId(socialAuthenticationRequest.getSocialPlatformType(), socialUser.getId());
             if (socialAuthentication == null) {
                 throw new UnauthorizedException("등록되지 않은 사용자입니다.");
