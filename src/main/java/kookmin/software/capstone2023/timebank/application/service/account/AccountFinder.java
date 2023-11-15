@@ -5,6 +5,8 @@ import kookmin.software.capstone2023.timebank.domain.repository.AccountJpaReposi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AccountFinder {
     private final AccountJpaRepository accountJpaRepository;
@@ -14,7 +16,8 @@ public class AccountFinder {
         this.accountJpaRepository = accountJpaRepository;
     }
 
-    public Optional<Account> findById(Long accountId) {
-        return accountJpaRepository.findById(accountId);
+    public Account findById(Long accountId) {
+        Optional<Account> ret = accountJpaRepository.findById(accountId);
+        return ret.orElse(null);
     }
 }
