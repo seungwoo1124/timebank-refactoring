@@ -91,10 +91,10 @@ public class BankAccountController {
             @Validated @RequestBody PasswordVerificationRequestData data,
             HttpServletRequest httpRequest) {
         String ipAddress = getClientIpAddress(httpRequest);
-        BankAccountReadService.PasswordVerificationResult res = bankAccountReadService.verifyPassword(data, ipAddress);
+        BankAccountReadService.VerificationResult res = bankAccountReadService.verifyPassword(data, ipAddress);
         return new PasswordVerificationResponseData(
                 String.valueOf(res.getFailedAttempts()),
-                String.valueOf(res.isPasswordCorrect()));
+                String.valueOf(res.getIsPasswordCorrect()));
     }
 
     @PutMapping("/password")

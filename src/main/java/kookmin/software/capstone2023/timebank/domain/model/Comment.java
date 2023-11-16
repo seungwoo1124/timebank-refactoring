@@ -49,4 +49,12 @@ public class Comment {
 
     @Column(name = "inquiry_id", insertable = false, updatable = false)
     private Long inquiryId;
+
+    public Comment(String content, User user, Inquiry inquiry, ZonedDateTime commentDate, Long commentSeq) {
+        this.content = content;
+        this.user = user;
+        this.inquiry = inquiry;
+        this.commentDate = commentDate;
+        this.commentSeq = commentSeq;
+    }
 }

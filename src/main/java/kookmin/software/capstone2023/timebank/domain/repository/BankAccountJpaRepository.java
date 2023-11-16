@@ -8,10 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BankAccountJpaRepository extends JpaRepository<BankAccount, Long> {
     Page<BankAccount> findAll(Specification<BankAccount> spec, Pageable pageable);
-    BankAccount findByAccountNumber(String accountNumber);
+    Optional<BankAccount> findByAccountNumber(String accountNumber);
     List<BankAccount> findAllByAccountId(Long accountId);
 }

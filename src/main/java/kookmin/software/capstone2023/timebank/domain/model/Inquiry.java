@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -23,6 +24,7 @@ import java.time.ZonedDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Inquiry {
 
     @Id
@@ -48,4 +50,11 @@ public class Inquiry {
 
     @Column(name = "user_id", insertable = false, updatable = false)
     private Long userId;
+
+    public Inquiry(String title, String content, User user, ZonedDateTime inquiryDate) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
+        this.inquiryDate = inquiryDate;
+    }
 }

@@ -50,4 +50,17 @@ public class BankAccountTransaction extends BaseTimeEntity {
 
     @Column(nullable = false)
     private LocalDateTime transactionAt = LocalDateTime.now();
+
+    public BankAccountTransaction(Long bankAccountId, TransactionCode code, BigDecimal amount, TransactionStatus status,
+                                  BankAccount receiverBankAccount, BankAccount senderBankAccount,
+                                  BigDecimal balanceSnapshot, LocalDateTime transactionAt) {
+        this.bankAccountId = bankAccountId;
+        this.code = code;
+        this.amount = amount;
+        this.status = status;
+        this.receiverBankAccount = receiverBankAccount;
+        this.senderBankAccount = senderBankAccount;
+        this.balanceSnapshot = balanceSnapshot;
+        this.transactionAt = transactionAt;
+    }
 }

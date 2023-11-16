@@ -57,4 +57,15 @@ public class BankAccount extends BaseTimeEntity {
             foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)
     )
     private BankBranch branch;
+
+    public BankAccount(Account account, BankBranch branch, BigDecimal balance, String ownerName,
+                       OwnerType ownerType, String accountNumber, String password) {
+        this.account = account;
+        this.branch = branch;
+        this.balance = balance;
+        this.ownerName = ownerName;
+        this.ownerType = ownerType;
+        this.accountNumber = accountNumber;
+        this.password = password;
+    }
 }
