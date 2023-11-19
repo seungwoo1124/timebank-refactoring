@@ -2,9 +2,11 @@ package kookmin.software.capstone2023.timebank.application.service.auth.model;
 
 import kookmin.software.capstone2023.timebank.domain.model.AccountType;
 import kookmin.software.capstone2023.timebank.domain.model.auth.AuthenticationType;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class PasswordAuthenticationRequest extends AuthenticationRequest {
     private final String username;
     private final String password;

@@ -21,6 +21,17 @@ public class BankAccountReadResponseData {
         this.ownerType = ownerType;
     }
 
+    public BankAccountReadResponseData(Long bankAccountId, Long branchId, BigDecimal balance, LocalDateTime createdAt,
+                                       String bankAccountNumber, String ownerName, OwnerType ownerType) {
+        this.bankAccountId = bankAccountId;
+        this.branchId = branchId;
+        this.balance = balance;
+        this.createdAt = createdAt;
+        this.bankAccountNumber = bankAccountNumber;
+        this.ownerName = ownerName;
+        this.ownerType = ownerType;
+    }
+
     public Long getBankAccountId() {
         return bankAccountId;
     }

@@ -5,12 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import kookmin.software.capstone2023.timebank.domain.model.BaseTimeEntity;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "authentication_password")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class PasswordAuthentication extends BaseTimeEntity {
 

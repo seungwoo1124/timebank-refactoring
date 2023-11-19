@@ -7,6 +7,7 @@ import kookmin.software.capstone2023.timebank.domain.model.InquiryStatus;
 import kookmin.software.capstone2023.timebank.domain.model.Period;
 import kookmin.software.capstone2023.timebank.domain.repository.InquiryRepository;
 import kookmin.software.capstone2023.timebank.domain.repository.UserJpaRepository;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Data
 public class InquiryService {
 
     private final InquiryRepository inquiryRepository;
@@ -62,6 +64,7 @@ public class InquiryService {
      * 문의 상태 Dto
      */
     @RequiredArgsConstructor
+    @Data
     public static class InquiryStatusUpdateRequest {
         public final InquiryStatus status;
     }
@@ -162,7 +165,7 @@ public class InquiryService {
         var inquiry = inquiryRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Inquiry not found with id: " + id));
 
-        inquiry.setContent(request.updateContent != null ? request.updateContent : inquiry.getContent())
+        inquiry.setContent(request.updateContent != null ? request.updateContent : inquiry.getContent());
         inquiry.setTitle(request.updateTitle);
         inquiry.setInquiryDate(request.updateDate != null ? request.updateDate : inquiry.getInquiryDate());
 
@@ -221,7 +224,7 @@ public class InquiryService {
                 inquiry.getInquiryDate(),
                 inquiry.getReplyStatus(),
                 inquiry.getUser().getId(),
-                inquiry.getUser().getName();
+                inquiry.getUser().getName()
         );
     }
 }

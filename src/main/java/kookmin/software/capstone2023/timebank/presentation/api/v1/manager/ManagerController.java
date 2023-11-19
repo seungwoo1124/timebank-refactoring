@@ -91,9 +91,9 @@ public class ManagerController {
                                                @Validated @RequestBody(required = true) ManagerPaymentRequestData paymentRequestData) {
         var response = transferService.transfer(new TransferService.TransferRequest(
                 userContext.getAccountId(),
-                paymentRequestData.isDeposit() ?
+                paymentRequestData.getIsDeposit() ?
                         paymentRequestData.getBranchBankAccountNumber() : paymentRequestData.getUserBankAccountNumber(),
-                paymentRequestData.isDeposit() ?
+                paymentRequestData.getIsDeposit() ?
                         paymentRequestData.getUserBankAccountNumber() : paymentRequestData.getBranchBankAccountNumber(),
                 paymentRequestData.getAmount()));
 
@@ -101,18 +101,18 @@ public class ManagerController {
             return new ManagerPaymentResponseData(
                     response.getSenderBankAccount().getAccountNumber(),
                     response.getReceiverBankAccount().getAccountNumber(),
-                    response.getAmount(),
-                    response.getUpdatedAt(),
                     response.getCode(),
-                    response.getStatus());
+                    response.getStatus(),
+                    response.getAmount(),
+                    response.getUpdatedAt());
         } else {
             return new ManagerPaymentResponseData(
                     response.getReceiverBankAccount().getAccountNumber(),
                     response.getSenderBankAccount().getAccountNumber(),
-                    response.getAmount(),
-                    response.getUpdatedAt(),
                     response.getCode(),
-                    response.getStatus());
+                    response.getStatus(),
+                    response.getAmount(),
+                    response.getUpdatedAt());
         }
     }
 }
