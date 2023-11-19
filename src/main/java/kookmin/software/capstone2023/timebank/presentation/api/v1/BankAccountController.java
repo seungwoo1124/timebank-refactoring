@@ -39,7 +39,7 @@ public class BankAccountController {
                 bankAccountCreateService.createBankAccount(
                         userContext.getAccountId(),
                         data.getPassword(),
-                        1);
+                        Long.valueOf(1));
 
         return new BankAccountCreateResponseData(
                 createdBankAccount.getBalance(),

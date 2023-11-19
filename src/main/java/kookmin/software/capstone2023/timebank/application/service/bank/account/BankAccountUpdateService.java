@@ -2,6 +2,7 @@ package kookmin.software.capstone2023.timebank.application.service.bank.account;
 
 import kookmin.software.capstone2023.timebank.domain.model.BankAccount;
 import kookmin.software.capstone2023.timebank.domain.repository.BankAccountJpaRepository;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,7 +42,7 @@ public class BankAccountUpdateService {
         );
     }
 
-    @lombok.Data
+    @Data
     public static class UpdatedBankAccount {
         private final String bankAccountNumber;
         private final LocalDateTime updatedAt;

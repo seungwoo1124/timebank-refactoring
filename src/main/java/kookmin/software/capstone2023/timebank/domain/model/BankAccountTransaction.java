@@ -1,16 +1,15 @@
 package kookmin.software.capstone2023.timebank.domain.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "bank_account_transaction")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class BankAccountTransaction extends BaseTimeEntity {
 

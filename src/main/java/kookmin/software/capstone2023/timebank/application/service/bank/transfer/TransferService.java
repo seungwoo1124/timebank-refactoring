@@ -24,5 +24,13 @@ public interface TransferService {
             this.amount = amount;
             this.password = password;
         }
+
+        public TransferRequest(Long accountId, String senderAccountNumber, String receiverAccountNumber, BigDecimal amount) {
+            this.accountId = accountId;
+            this.senderAccountNumber = senderAccountNumber;
+            this.receiverAccountNumber = receiverAccountNumber;
+            this.amount = amount;
+            this.password = null;
+        }
     }
 }

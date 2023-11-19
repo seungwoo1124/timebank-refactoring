@@ -8,10 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import kookmin.software.capstone2023.timebank.domain.model.BaseTimeEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "authentication_social")
-@Data
+@Getter
+@Setter
 public class SocialAuthentication extends BaseTimeEntity {
 
     @Id
