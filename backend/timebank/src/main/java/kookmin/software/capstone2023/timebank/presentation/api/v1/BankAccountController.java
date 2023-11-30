@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@UserAuthentication
+//@UserAuthentication
 @RestController
 @RequestMapping("api/v1/bank/account")
 public class BankAccountController {
@@ -39,7 +39,7 @@ public class BankAccountController {
                 bankAccountCreateService.createBankAccount(
                         userContext.getAccountId(),
                         data.getPassword(),
-                        Long.valueOf(1));
+                        1L);
 
         return new BankAccountCreateResponseData(
                 createdBankAccount.getBalance(),

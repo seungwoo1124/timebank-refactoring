@@ -12,7 +12,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @ConfigurationPropertiesScan(
 		value = ("kookmin.software.capstone2023.timebank.application.configuration")
 )
-//@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication()
 public class TimebankApplication {
 	public static void main(String[] args) {
