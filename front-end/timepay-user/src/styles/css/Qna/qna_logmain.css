@@ -1,0 +1,82 @@
+.mainGrid {
+    position: relative;
+    top: 3%;
+    left: 4%;
+
+    width: 92%;
+    height: 70%;
+
+}
+
+.mainGrid .filterGrid {
+    position:relative;
+    top: 0%;
+    left: 0%;
+
+    width: 100%;
+    height: 4%;
+
+    display:grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 1fr 2fr 30px;
+    grid-template-areas: "term box button";
+}
+
+.selectTerm {
+    grid-area: term;
+    
+    width:99%;
+    min-width: 120px;
+    
+    /* font */
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.searchBox {
+    grid-area: box;
+    margin-left: 3%;
+    height:24px;
+
+}
+
+.searchButton {
+    grid-area: button;
+    margin-left: 3%;
+    width:24px;
+    height:24px;
+    
+    background-color:transparent ;
+    border-color:transparent;
+
+    cursor:pointer;
+}
+
+.mainGrid .mainBox {
+    position:relative;
+    top: 3%;
+    left: 0%;
+
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.mainGrid .mainBox .clickableDetailBox{
+    margin-bottom:2%;
+    cursor:pointer;
+    width : 100%;
+
+}
+
+.qnaStatus {
+    margin-right:5%;
+}
+
+.qnaTitle {
+    color: black;
+}

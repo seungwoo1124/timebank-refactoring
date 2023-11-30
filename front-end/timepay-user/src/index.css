@@ -1,0 +1,359 @@
+@import url('./styles/fonts/pretendard/pretendard.css');
+
+html {
+  -ms-content-zooming: none;
+  /* -ms-touch-action: pan-x pan-y; */
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+    'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
+}
+
+button {
+  border: 0;
+  outline: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+.intro-page {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro-page .main-img {
+  top: 28%;
+  position: fixed;
+  width: 100%;
+}
+
+.intro-page .top {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 600;
+  position: fixed;
+  right: 5%;
+  color: #4b4b4b;
+}
+
+.intro-page .top img {
+  top: 13px;
+  position: relative;
+  margin-right: 5px;
+}
+
+.intro-page .main-title {
+  font-style: normal;
+  font-size: 38px;
+  line-height: 42px;
+  font-weight: bold;
+  color: #4b4b4b;
+  text-align: left;
+  top: 12%;
+  position: fixed;
+  left: 8%;
+}
+
+.intro-page .kakao-img {
+  bottom: 5%;
+  position: fixed;
+}
+
+.sign-up {
+  text-align: center;
+  top: 20%;
+  position: relative;
+  padding: 30px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.sign-up .title {
+  margin: 0 auto;
+}
+
+.info-box {
+  margin-top: 20%;
+  display: flex;
+  border: 1px solid #d1d1d1;
+  padding: 20px;
+  flex-direction: column;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.info-box label {
+  padding: 10px 0;
+}
+
+.sign-up button {
+  background-color: #f1af23;
+  color: #fff;
+  margin-top: 60%;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 13px 35px;
+  border-radius: 35px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.main-page .main-header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #cdcdcd;
+  margin-bottom: 10%;
+  top: 0;
+  top: constant(safe-area-inset-top);
+  top: env(safe-area-inset-top);
+  right: 0;
+  right: constant(safe-area-inset-right);
+  right: env(safe-area-inset-right);
+}
+
+.main-page .main-header img {
+  top: 1px;
+  position: relative;
+  padding-right: 10px;
+}
+
+.main-page .main-header .menu {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  top: 5px;
+  position: relative;
+}
+
+.main-page .user-account {
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #cdcdcd;
+  border-radius: 10px;
+  width: 90%;
+}
+
+.main-page .user-account .user-info {
+  padding: 16px;
+}
+
+.main-page .user-account .user-info .title {
+  color: #f1af23;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.main-page .user-account .user-info .account-num {
+  color: #787878;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.main-page .user-account .user-info .main-amount {
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 20px;
+  text-align: center;
+}
+
+.balance {
+  font-size: 1rem;
+}
+
+.main-page .user-account .bottom-btn {
+  background-color: #f1af23;
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 8px 20px -4px #f1af23;
+}
+
+.main-page .recent-list {
+  background-color: #fff;
+  margin: 0 auto;
+  border: 1px solid #cdcdcd;
+  border-radius: 8px;
+  width: 90%;
+  top: 50px;
+  position: relative;
+  padding: 16px;
+}
+
+.main-page .recent-list .list {
+  padding: 10px;
+  border: 1px solid #cdcdcd;
+  margin-bottom: 10px;
+  line-height: 25px;
+  color: #787878;
+  border-radius: 10px;
+}
+
+.main-page .recent-list .list .date {
+  display: flex;
+  justify-content: flex-start;
+  color: #787878;
+  font-size: 15px;
+}
+
+.main-page .recent-list .title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #787878;
+}
+
+.unregist-page .main-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f1af23;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.unregist-page .regist-body {
+  font-size: 16px;
+}
+
+.unregist-page .regist-body .info {
+  padding: 20px 10px 0;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  margin: 20px;
+}
+.unregist-page .regist-body .info .list {
+  font-size: 16px;
+  display: flex;
+}
+
+.unregist-page button {
+  background-color: #f1af23;
+  color: #fff;
+  margin-top: 60%;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 13px 35px;
+  border-radius: 35px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.check input[type='checkbox'] {
+  -webkit-appearance: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  outline: none !important;
+  border: 1px solid #9999;
+  vertical-align: middle;
+}
+.check input[type='checkbox']::before {
+  content: '\2713';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  transform: scale(0) translate(-50%, -50%);
+  line-height: 1;
+}
+.check input[type='checkbox']:checked {
+  background-color: #787878;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+.check input[type='checkbox']:checked::before {
+  border-radius: 4px;
+  transform: scale(1) translate(-50%, -50%);
+}
+
+.unregist-page .edit-body {
+  padding: 30px 25px;
+}
+
+.unregist-page .edit-body .user-title {
+  margin-top: 20px;
+  display: flex;
+}
+
+.unregist-page .edit-body .user-title .circle-profile {
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  width: fit-content;
+  padding: 20px;
+  border-radius: 50%;
+}
+
+.unregist-page .edit-body .user-title .name-title {
+  font-size: 32px;
+  color: #858585;
+  line-height: 25px;
+  padding-left: 40px;
+  top: 20px;
+  position: relative;
+}
+
+.unregist-page .edit-body .user-info {
+  padding: 20px;
+  margin-top: 40px;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.unregist-page .edit-body input {
+  border: none;
+  margin-left: 20px;
+  top: -2px;
+  position: relative;
+  font-size: 16px;
+}
+#dropdown {
+  margin-left: 52px;
+}
+
+.unregist-page .edit-body .user-account {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 15px;
+  font-size: 18px;
+  line-height: 30px;
+}
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item {
+  font-size: 25px;
+}
+
+#check_password_modal_sheet > div {
+  padding: 20px 30px;
+  text-align: center;
+}
