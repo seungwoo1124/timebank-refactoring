@@ -4,16 +4,14 @@ import jakarta.persistence.*;
 import kookmin.software.capstone2023.timebank.domain.model.auth.AuthenticationType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 public class User extends BaseTimeEntity {
 
@@ -80,16 +78,5 @@ public class User extends BaseTimeEntity {
 
     public void updateLastLoginAt(LocalDateTime loginAt) {
         this.lastLoginAt = loginAt;
-    }
-
-    public User(AuthenticationType type, Account account, String name, String phoneNumber,
-                Gender gender, LocalDate birthday, LocalDateTime lastLoginAt) {
-        this.authenticationType = type;
-        this.account = account;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.gender = gender;
-        this.birthday = birthday;
-        this.lastLoginAt = lastLoginAt;
     }
 }

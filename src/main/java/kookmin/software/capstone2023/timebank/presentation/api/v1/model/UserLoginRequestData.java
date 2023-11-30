@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.validation.constraints.NotBlank;
 import kookmin.software.capstone2023.timebank.application.service.auth.model.AuthenticationRequest;
-import kookmin.software.capstone2023.timebank.application.service.auth.model.PasswordAuthenticationRequest;
-import kookmin.software.capstone2023.timebank.application.service.auth.model.SocialAuthenticationRequest;
 import kookmin.software.capstone2023.timebank.domain.model.AccountType;
 import kookmin.software.capstone2023.timebank.domain.model.auth.AuthenticationType;
 import kookmin.software.capstone2023.timebank.domain.model.auth.SocialPlatformType;
@@ -58,10 +56,10 @@ public abstract class UserLoginRequestData {
 
         @Override
         public AuthenticationRequest toAuthenticationRequest() {
-            return new SocialAuthenticationRequest(
-                    AccountType.INDIVIDUAL,
+            return new AuthenticationRequest.SocialAuthenticationRequest(
                     socialPlatformType,
-                    accessToken
+                    accessToken,
+                    AccountType.INDIVIDUAL
             );
         }
     }
@@ -91,10 +89,10 @@ public abstract class UserLoginRequestData {
 
         @Override
         public AuthenticationRequest toAuthenticationRequest() {
-            return new PasswordAuthenticationRequest(
-                    AccountType.INDIVIDUAL,
+            return new AuthenticationRequest.PasswordAuthenticationRequest(
                     username,
-                    password
+                    password,
+                    AccountType.INDIVIDUAL
             );
         }
     }

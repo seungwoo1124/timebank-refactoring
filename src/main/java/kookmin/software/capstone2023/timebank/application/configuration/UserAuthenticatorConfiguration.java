@@ -1,7 +1,6 @@
 package kookmin.software.capstone2023.timebank.application.configuration;
 
 import kookmin.software.capstone2023.timebank.application.service.auth.DefaultUserAuthenticator;
-import kookmin.software.capstone2023.timebank.application.service.auth.TestEnvironmentUserAuthenticator;
 import kookmin.software.capstone2023.timebank.application.service.auth.UserAuthenticator;
 import kookmin.software.capstone2023.timebank.application.service.auth.token.AccessTokenService;
 import kookmin.software.capstone2023.timebank.core.LoggerExtensions;

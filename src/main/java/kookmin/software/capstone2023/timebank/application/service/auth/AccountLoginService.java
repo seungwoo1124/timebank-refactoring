@@ -45,12 +45,12 @@ public class AccountLoginService {
     public TokenData login(AuthenticationRequest authenticationRequest) {
         long userId = authenticate(authenticationRequest);
 
-        User user = userJpaRepository.findById(userId).get();
+        User user = userJpaRepository.findById(userId).value;
         if (user == null) {
             throw new UnauthorizedException("등록되지 않은 사용자입니다.");
         }
 
-        Account account = accountJpaRepository.findById(user.getAccount().getId()).get();
+        Account account = accountJpaRepository.findById(user.getAccount().getId()).value;
         if (account == null) {
             throw new UnauthorizedException("등록되지 않은 사용자입니다.");
         }

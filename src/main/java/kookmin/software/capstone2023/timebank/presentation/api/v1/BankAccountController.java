@@ -39,7 +39,7 @@ public class BankAccountController {
                 bankAccountCreateService.createBankAccount(
                         userContext.getAccountId(),
                         data.getPassword(),
-                        Long.valueOf(1));
+                        1);
 
         return new BankAccountCreateResponseData(
                 createdBankAccount.getBalance(),
@@ -91,10 +91,10 @@ public class BankAccountController {
             @Validated @RequestBody PasswordVerificationRequestData data,
             HttpServletRequest httpRequest) {
         String ipAddress = getClientIpAddress(httpRequest);
-        BankAccountReadService.VerificationResult res = bankAccountReadService.verifyPassword(data, ipAddress);
+        BankAccountReadService.PasswordVerificationResult res = bankAccountReadService.verifyPassword(data, ipAddress);
         return new PasswordVerificationResponseData(
                 String.valueOf(res.getFailedAttempts()),
-                String.valueOf(res.getIsPasswordCorrect()));
+                String.valueOf(res.isPasswordCorrect()));
     }
 
     @PutMapping("/password")

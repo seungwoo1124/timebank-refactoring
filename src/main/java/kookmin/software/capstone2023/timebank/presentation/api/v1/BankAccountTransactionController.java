@@ -1,7 +1,6 @@
 package kookmin.software.capstone2023.timebank.presentation.api.v1;
 
 import kookmin.software.capstone2023.timebank.application.service.bank.account.BankAccountReadService;
-import kookmin.software.capstone2023.timebank.domain.model.BankAccountTransaction;
 import kookmin.software.capstone2023.timebank.domain.repository.BankAccountTransactionJpaRepository;
 import kookmin.software.capstone2023.timebank.domain.repository.spec.BankAccountTransactionSpecs;
 import kookmin.software.capstone2023.timebank.presentation.api.RequestAttributes;
@@ -35,7 +34,7 @@ public class BankAccountTransactionController {
             @PageableDefault Pageable pageable) {
         var bankAccount = bankAccountReadService.getBankAccountByBankAccountNumber(bankAccountNumber);
 
-        Specification<BankAccountTransaction> spec =
+        Specification<BankAccountTransactionSpecs.BankAccountTransactionSpec> spec =
                 Specification.where(BankAccountTransactionSpecs.withBankAccountId(bankAccount.getId()));
 
         return bankAccountTransactionJpaRepository.findAll(spec, pageable)

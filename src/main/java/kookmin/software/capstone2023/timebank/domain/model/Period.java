@@ -1,6 +1,5 @@
 package kookmin.software.capstone2023.timebank.domain.model;
 
-
 public enum Period {
     ONE_MONTH(1),
     THREE_MONTHS(3),
@@ -12,5 +11,4 @@ public enum Period {
     Period(long months) {
         this.months = months;
     }
-    public long getMonths() { return months; }
 }

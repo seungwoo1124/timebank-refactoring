@@ -23,7 +23,7 @@ public class ManagerAuthenticationInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (!(handler instanceof HandlerMethod)) {
-            return HandlerInterceptor.super.preHandle(request, response, handler);
+            return super.preHandle(request, response, handler);
         }
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -31,12 +31,12 @@ public class ManagerAuthenticationInterceptor implements HandlerInterceptor {
         if (managerAuthentication == null) {
             managerAuthentication = handlerMethod.getBeanType().getAnnotation(ManagerAuthentication.class);
             if (managerAuthentication == null) {
-                return HandlerInterceptor.super.preHandle(request, response, handler);
+                return super.preHandle(request, response, handler);
             }
         }
 
         if (request.getAttribute(RequestAttributes.USER_CONTEXT) != null) {
-            return HandlerInterceptor.super.preHandle(request, response, handler);
+            return super.preHandle(request, response, handler);
         }
 
         String authorizationToken = getAuthorizationToken(request);

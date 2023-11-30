@@ -2,7 +2,6 @@ package kookmin.software.capstone2023.timebank.presentation.api.v1;
 
 import kookmin.software.capstone2023.timebank.application.service.bank.transfer.TransferService;
 import kookmin.software.capstone2023.timebank.application.service.bank.transfer.TransferServiceImpl;
-import kookmin.software.capstone2023.timebank.domain.model.BankAccountTransaction;
 import kookmin.software.capstone2023.timebank.presentation.api.RequestAttributes;
 import kookmin.software.capstone2023.timebank.presentation.api.auth.model.UserAuthentication;
 import kookmin.software.capstone2023.timebank.presentation.api.auth.model.UserContext;
@@ -30,7 +29,7 @@ public class BankTransferController {
     public BankFundTransferResponseData transfer(
             @RequestAttribute(RequestAttributes.USER_CONTEXT) UserContext userContext,
             @Validated @RequestBody BankAccountTransferRequestData data) {
-        BankAccountTransaction response = transferService.transfer(
+        TransferService.TransferResponse response = transferService.transfer(
                 new TransferService.TransferRequest(
                         userContext.getAccountId(),
                         data.getSenderBankAccountNumber(),

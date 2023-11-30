@@ -1,8 +1,10 @@
 package kookmin.software.capstone2023.timebank.application.exception;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
+@RequiredArgsConstructor
 public enum ApplicationErrorCode {
     BAD_REQUEST("BAD_REQUEST", "잘못된 요청입니다."),
     UNAUTHORIZED("UNAUTHORIZED", ""),

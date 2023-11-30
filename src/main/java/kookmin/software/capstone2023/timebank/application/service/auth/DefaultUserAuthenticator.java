@@ -1,10 +1,7 @@
 package kookmin.software.capstone2023.timebank.application.service.auth;
 
 import kookmin.software.capstone2023.timebank.application.exception.UnauthorizedException;
-import kookmin.software.capstone2023.timebank.application.service.auth.token.AccessTokenClaims;
 import kookmin.software.capstone2023.timebank.application.service.auth.token.AccessTokenService;
-import kookmin.software.capstone2023.timebank.domain.model.Account;
-import kookmin.software.capstone2023.timebank.domain.model.User;
 import kookmin.software.capstone2023.timebank.domain.repository.AccountJpaRepository;
 import kookmin.software.capstone2023.timebank.domain.repository.UserJpaRepository;
 
@@ -25,14 +22,14 @@ public class DefaultUserAuthenticator implements UserAuthenticator {
 
     @Override
     public AuthenticationData authenticate(String accessToken) {
-        AccessTokenClaims claims = accessTokenService.verify(accessToken);
+        AccessTokenService.AccessTokenClaims claims = accessTokenService.verify(accessToken);
 
-        User user = userJpaRepository.findById(claims.getUserId()).get();
+        User user = userJpaRepository.findById(claims.getUserId()).value;
         if (user == null) {
             throw new UnauthorizedException(null);
         }
 
-        Account account = accountJpaRepository.findById(claims.getAccountId()).get();
+        Account account = accountJpaRepository.findById(claims.getAccountId()).value;
         if (account == null) {
             throw new UnauthorizedException(null);
         }

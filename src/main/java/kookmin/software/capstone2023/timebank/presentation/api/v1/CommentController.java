@@ -6,6 +6,7 @@ import kookmin.software.capstone2023.timebank.domain.model.AccountType;
 import kookmin.software.capstone2023.timebank.presentation.api.RequestAttributes;
 import kookmin.software.capstone2023.timebank.presentation.api.auth.model.UserAuthentication;
 import kookmin.software.capstone2023.timebank.presentation.api.auth.model.UserContext;
+import kotlin.Unit;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +52,7 @@ public class CommentController {
             @PathVariable Long userId,
             @PathVariable Long commentId,
             @RequestBody CommentService.CommentUpdateRequest request) {
-        if (userContext.getUserId() != userId) {
+        if (!userContext.getUserId().equals(userId)) {
             throw new UnauthorizedException("수정 권한이 없습니다.");
         }
         return commentService.updateComment(commentId, request);
@@ -61,13 +62,13 @@ public class CommentController {
      * 댓글 삭제
      */
     @DeleteMapping("/users/{userId}/{commentId}")
-    public ResponseEntity<Void> deleteCommentById(
+    public ResponseEntity<Unit> deleteCommentById(
             @RequestAttribute(RequestAttributes.USER_CONTEXT) UserContext userContext,
             @PathVariable Long userId,
             @PathVariable Long commentId,
             @PathVariable Long id) {
         if (userContext.getAccountType() == AccountType.INDIVIDUAL) {
-            if (userContext.getUserId() != userId) {
+            if (!userContext.getUserId().equals(userId)) {
                 throw new UnauthorizedException("삭제 권한이 없습니다.");
             }
         }

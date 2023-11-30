@@ -2,8 +2,7 @@ package kookmin.software.capstone2023.timebank.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -14,8 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "bank_account")
 @Where(clause = "deleted_at IS NULL")
 @SQLDelete(sql = "UPDATE account SET deleted_at = now() WHERE id = ?")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 public class BankAccount extends BaseTimeEntity {
 
@@ -59,15 +57,4 @@ public class BankAccount extends BaseTimeEntity {
             foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)
     )
     private BankBranch branch;
-
-    public BankAccount(Account account, BankBranch branch, BigDecimal balance, String ownerName,
-                       OwnerType ownerType, String accountNumber, String password) {
-        this.account = account;
-        this.branch = branch;
-        this.balance = balance;
-        this.ownerName = ownerName;
-        this.ownerType = ownerType;
-        this.accountNumber = accountNumber;
-        this.password = password;
-    }
 }

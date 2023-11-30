@@ -7,6 +7,7 @@ import kookmin.software.capstone2023.timebank.domain.model.Period;
 import kookmin.software.capstone2023.timebank.presentation.api.RequestAttributes;
 import kookmin.software.capstone2023.timebank.presentation.api.auth.model.UserAuthentication;
 import kookmin.software.capstone2023.timebank.presentation.api.auth.model.UserContext;
+import kotlin.Unit;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,7 +68,7 @@ public class InquiryController {
             @RequestAttribute(RequestAttributes.USER_CONTEXT) UserContext userContext,
             @PathVariable Long userId) {
         if (userContext.getAccountType() == AccountType.INDIVIDUAL) {
-            if (userContext.getUserId() != userId) {
+            if (!userContext.getUserId().equals(userId)) {
                 throw new UnauthorizedException("접근권한이 없습니다.");
             }
         }
@@ -95,7 +96,7 @@ public class InquiryController {
             @RequestAttribute(RequestAttributes.USER_CONTEXT) UserContext userContext,
             @RequestParam("period") Period period,
             @PathVariable Long userId) {
-        if (userContext.getUserId() != userId) {
+        if (!userContext.getUserId().equals(userId)) {
             throw new UnauthorizedException("접근 권한이 없습니다.");
         }
         return inquiryService.getUserInquiriesByPeriod(period, userId);
@@ -124,7 +125,7 @@ public class InquiryController {
             @RequestParam(value = "period", required = false) Period period,
             @RequestParam(value = "userId", required = false) Long userId) {
         if (userContext.getAccountType() == AccountType.INDIVIDUAL) {
-            if (userContext.getUserId() != userId) {
+            if (!userContext.getUserId().equals(userId)) {
                 throw new UnauthorizedException("접근 권한이 없습니다.");
             }
         }
@@ -139,7 +140,7 @@ public class InquiryController {
             @RequestAttribute(RequestAttributes.USER_CONTEXT) UserContext userContext,
             @RequestParam("title") String title,
             @PathVariable Long userId) {
-        if (userContext.getUserId() != userId) {
+        if (!userContext.getUserId().equals(userId)) {
             throw new UnauthorizedException("접근 권한이 없습니다.");
         }
         return inquiryService.getUserInquiryByTitle(title, userId);
@@ -154,7 +155,7 @@ public class InquiryController {
             @PathVariable Long id,
             @PathVariable Long userId,
             @RequestBody InquiryService.InquiryUpdateRequest request) {
-        if (userContext.getUserId() != userId) {
+        if (!userContext.getUserId().equals(userId)) {
             throw new UnauthorizedException("수정 권한이 없습니다.");
         }
         return inquiryService.updateInquiry(id, request);
@@ -164,7 +165,7 @@ public class InquiryController {
      * 문의 삭제
      */
     @DeleteMapping("/users/{userId}/{inquiryId}")
-    public ResponseEntity<Void> deleteInquiryByUserId(
+    public ResponseEntity<Unit> deleteInquiryByUserId(
             @PathVariable Long userId,
             @PathVariable Long inquiryId) {
         inquiryService.deleteInquiryByUserId(userId, inquiryId);
