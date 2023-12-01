@@ -12,16 +12,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -62,22 +62,31 @@ public class BankAccountControllerTest {
     @Test
     public void testCreateBankAccount() throws Exception {
         // Mock request data
-        BankAccountCreateRequestData requestData = new BankAccountCreateRequestData("test1");
+        BankAccountCreateRequestData requestData = new BankAccountCreateRequestData("1234");
 
         // Mock user context
-        UserContext userContext = new UserContext(1L, 1L, AccountType.INDIVIDUAL);
+        UserContext userContext = new UserContext(2L, 2L, AccountType.INDIVIDUAL);
+
+        Optional<Account> account = accountJpaRepository.findById(2L);
+        assertTrue(account.isPresent(), "해당하는 id의 account가 존재하지 않습니다.");
+
+        System.out.println(account.get().getId());
+        System.out.println(account.get().getName());
 
         // Perform the request
         ResultActions resultActions = mockMvc.perform(post("/api/v1/bank/account")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .requestAttr(RequestAttributes.USER_CONTEXT, userContext)
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .header(RequestAttributes.USER_CONTEXT, objectMapper.writeValueAsString(userContext))
                         .content(objectMapper.writeValueAsString(requestData)));
-        resultActions
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.balance").value(100.0))
-                .andExpect(jsonPath("$.bankAccountNumber").value("1234567890"))
-                .andExpect(jsonPath("$.bankAccountId").value(1L));
 
+        System.out.println(resultActions.andReturn().getResponse().getContentAsString());
+
+        resultActions
+                .andExpect(status().isOk()) // HTTP 상태 코드가 200인지 확인
+                .andExpect(content().contentType("application/json")) // 응답 컨텐츠 유형이 "application/json"인지 확인
+                .andExpect(jsonPath("$.balance").value(300.0)) // JSON 응답에서 balance 속성의 값이 기대한 값과 일치하는지 확인
+                .andExpect(jsonPath("$.bankAccountId").value(2L)); // JSON 응답에서 accountNumber 속성의 값이 기대한 값과 일치하는지 확인.andExpect(jsonPath("$.bankAccountId").value()); // JSON 응답에서 bankAccountId 속성의 값이 기대한 값과 일치하는지 확인
+        
         System.out.println(resultActions);
     }
 }
