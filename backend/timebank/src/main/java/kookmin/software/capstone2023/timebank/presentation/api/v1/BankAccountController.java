@@ -1,5 +1,6 @@
 package kookmin.software.capstone2023.timebank.presentation.api.v1;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import kookmin.software.capstone2023.timebank.application.service.bank.account.BankAccountCreateService;
 import kookmin.software.capstone2023.timebank.application.service.bank.account.BankAccountReadService;
@@ -11,6 +12,7 @@ import kookmin.software.capstone2023.timebank.presentation.api.v1.model.bank.acc
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,12 +35,17 @@ public class BankAccountController {
 
     @PostMapping
     public BankAccountCreateResponseData createBankAccount(
-            @RequestAttribute(RequestAttributes.USER_CONTEXT) UserContext userContext,
-            @Validated @RequestBody BankAccountCreateRequestData data) {
+            @RequestHeader(RequestAttributes.USER_CONTEXT) String userContextHeader,
+            @RequestHeader("appName") String appName,
+            @Validated @RequestBody BankAccountCreateRequestData data) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserContext userContext = objectMapper.readValue(userContextHeader, UserContext.class);
+
         BankAccountCreateService.CreatedBankAccount createdBankAccount =
                 bankAccountCreateService.createBankAccount(
                         userContext.getAccountId(),
                         data.getPassword(),
+                        appName,
                         1L);
 
         return new BankAccountCreateResponseData(

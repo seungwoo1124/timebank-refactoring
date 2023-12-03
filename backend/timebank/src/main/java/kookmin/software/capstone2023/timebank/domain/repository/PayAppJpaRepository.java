@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PayAppRepository extends JpaRepository<PayApp, Long> {
+public interface PayAppJpaRepository extends JpaRepository<PayApp, Long> {
     Optional<PayApp> findByName(String name);
 }

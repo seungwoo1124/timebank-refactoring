@@ -27,6 +27,11 @@ public class UserControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
+    public void testRegisterBranch() throws Exception {
+
+    }
+
+    @Test
     public void testRegisterUser() throws Exception {
         // Mock request data
         UserRegisterRequestData requestData =

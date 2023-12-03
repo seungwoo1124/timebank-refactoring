@@ -1,7 +1,7 @@
 package kookmin.software.capstone2023.timebank.application.service.payapp;
 
 import kookmin.software.capstone2023.timebank.domain.model.PayApp;
-import kookmin.software.capstone2023.timebank.domain.repository.PayAppRepository;
+import kookmin.software.capstone2023.timebank.domain.repository.PayAppJpaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class PayAppService {
-    private final PayAppRepository payAppRepository;
+    private final PayAppJpaRepository payAppRepository;
 
     public void savePayApp(PayApp payApp) {
         payAppRepository.save(payApp);

@@ -46,12 +46,15 @@ public class ManagerAuthenticationInterceptor implements HandlerInterceptor {
 
         UserAuthenticator.AuthenticationData authenticationData = userAuthenticator.authenticate(authorizationToken);
         if (authenticationData.getAccountType() != AccountType.BRANCH) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException("authenticationData.getAccountType() != AccountType.BRANCH");
         }
 
         request.setAttribute(
                 RequestAttributes.USER_CONTEXT,
-                new UserContext(authenticationData.getUserId(), authenticationData.getAccountId(), authenticationData.getAccountType())
+                new UserContext(
+                        authenticationData.getUserId(),
+                        authenticationData.getAccountId(),
+                        authenticationData.getAccountType())
         );
 
         return true;
