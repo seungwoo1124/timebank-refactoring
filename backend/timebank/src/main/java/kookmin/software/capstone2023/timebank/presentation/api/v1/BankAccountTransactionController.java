@@ -8,6 +8,7 @@ import kookmin.software.capstone2023.timebank.presentation.api.RequestAttributes
 import kookmin.software.capstone2023.timebank.presentation.api.auth.model.UserAuthentication;
 import kookmin.software.capstone2023.timebank.presentation.api.auth.model.UserContext;
 import kookmin.software.capstone2023.timebank.presentation.api.v1.manager.model.BankAccountTransactionResponseData;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,18 +16,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @UserAuthentication
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/bank/account/transaction")
 @RestController
 public class BankAccountTransactionController {
 
     private final BankAccountReadService bankAccountReadService;
     private final BankAccountTransactionJpaRepository bankAccountTransactionJpaRepository;
-
-    public BankAccountTransactionController(BankAccountReadService bankAccountReadService,
-                                            BankAccountTransactionJpaRepository bankAccountTransactionJpaRepository) {
-        this.bankAccountReadService = bankAccountReadService;
-        this.bankAccountTransactionJpaRepository = bankAccountTransactionJpaRepository;
-    }
 
     @GetMapping("/{bankAccountNumber}")
     public Page<BankAccountTransactionResponseData> getBankAccountTransactionsByBankAccountNumber(

@@ -36,6 +36,7 @@ public class BankAccountController {
     @PostMapping
     public BankAccountCreateResponseData createBankAccount(
             @RequestHeader(RequestAttributes.USER_CONTEXT) String userContextHeader,
+            @RequestHeader("appName") String appName,
             @Validated @RequestBody BankAccountCreateRequestData data) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         UserContext userContext = objectMapper.readValue(userContextHeader, UserContext.class);
@@ -44,6 +45,7 @@ public class BankAccountController {
                 bankAccountCreateService.createBankAccount(
                         userContext.getAccountId(),
                         data.getPassword(),
+                        appName,
                         1L);
 
         return new BankAccountCreateResponseData(

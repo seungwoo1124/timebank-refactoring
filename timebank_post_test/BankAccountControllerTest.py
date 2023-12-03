@@ -4,24 +4,21 @@ import json
 url = "http://localhost:8080/api/v1/bank/account"
 
 requestData = {
-    "password": "1234"
+    "password": "seungwoo2"
 }
 
+#아래 두 변수는 헤더로 들어갑니다.
 userContext = {
-    "userId": 2,
-    "accountId": 2,
+    "userId": 4,
+    "accountId": 4,
     "accountType": "INDIVIDUAL"
 }
+appName = "timePay"
 
-# Combine requestData and userContext
 data = {"password": requestData["password"]}
+headers = {"userContext": json.dumps(userContext), "appName": appName, "Content-Type": "application/json"}
 
-# Add userContext to headers
-headers = {"userContext": json.dumps(userContext), "Content-Type": "application/json"}
-
-# Perform the request with headers
 response = requests.post(url, json=data, headers=headers)
 
 print(response.status_code)
 print(response.text)
-
